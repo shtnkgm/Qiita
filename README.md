@@ -1,6 +1,9 @@
 Posts on Qiita
 =====
 
+* [複数の非同期処理の完了時に処理を行う](http://qiita.com/shtnkgm/items/d9b78365a12b08d5bde1 "see on Qiita")
+* [UIKitのView表示ライフサイクルを理解する](http://qiita.com/shtnkgm/items/f133f73baaa71172efb2 "see on Qiita")
+* [Xcode9-beta起動後、Xcode8のシミュレーターが消えた場合の対処法](http://qiita.com/shtnkgm/items/24762c61d4885e188699 "see on Qiita")
 * [クラス名や関数名等をログ出力する方法](http://qiita.com/shtnkgm/items/de9cf3d85ccd0cef0a81 "see on Qiita")
 * [プロジェクト内で利用しているuserDefinedRuntimeAttributeの一覧を出力するコマンド](http://qiita.com/shtnkgm/items/96ea4df3f85f1e1fa4f0 "see on Qiita")
 * [iOS10.3以降でCharlesが使えない場合の対処法](http://qiita.com/shtnkgm/items/cd32df0c7b4bd424f107 "see on Qiita")
