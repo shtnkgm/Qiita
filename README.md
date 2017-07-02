@@ -1,6 +1,8 @@
 Posts on Qiita
 =====
 
+* [attributeまとめ[Swift4対応]](http://qiita.com/shtnkgm/items/a793f26445f2b8390bee "see on Qiita")
+* [swiftの「Self」キーワードの概要、用途まとめ](http://qiita.com/shtnkgm/items/63b453069ff6b745c04b "see on Qiita")
 * [複数の非同期処理の完了時に処理を行う](http://qiita.com/shtnkgm/items/d9b78365a12b08d5bde1 "see on Qiita")
 * [UIKitのView表示ライフサイクルを理解する](http://qiita.com/shtnkgm/items/f133f73baaa71172efb2 "see on Qiita")
 * [Xcode9-beta起動後、Xcode8のシミュレーターが消えた場合の対処法](http://qiita.com/shtnkgm/items/24762c61d4885e188699 "see on Qiita")
