@@ -1,6 +1,14 @@
 Posts on Qiita
 =====
 
+* [【コードリーディング】SwiftyJSONを読む](http://qiita.com/shtnkgm/items/94faadfdc03c5a161514 "see on Qiita")
+* [無限再帰呼び出しでEXC_BAD_ACCESS](http://qiita.com/shtnkgm/items/82e1b51a56378af69b17 "see on Qiita")
+* [SwiftでJSON文字列の比較がしたい](http://qiita.com/shtnkgm/items/522978bea204403561ee "see on Qiita")
+* [iOS11のVision.frameworkを使ってみる](http://qiita.com/shtnkgm/items/43e97595392168e6ada8 "see on Qiita")
+* [iOS向けfastlaneアクションまとめ](http://qiita.com/shtnkgm/items/c48ed2fba6477c9ed2b7 "see on Qiita")
+* [クラス定義にfinalをつける理由](http://qiita.com/shtnkgm/items/c985ab4b314b8572eccd "see on Qiita")
+* [indexがArrayの範囲内かチェックする色々な書き方](http://qiita.com/shtnkgm/items/f02553cb6bb16a59d8fe "see on Qiita")
+* [参照型のプロパティを持つstructについて考える](http://qiita.com/shtnkgm/items/2063b3b389f7f27d49e2 "see on Qiita")
 * [attributeまとめ[Swift4対応]](http://qiita.com/shtnkgm/items/a793f26445f2b8390bee "see on Qiita")
 * [swiftの「Self」キーワードの概要、用途まとめ](http://qiita.com/shtnkgm/items/63b453069ff6b745c04b "see on Qiita")
 * [複数の非同期処理の完了時に処理を行う](http://qiita.com/shtnkgm/items/d9b78365a12b08d5bde1 "see on Qiita")
