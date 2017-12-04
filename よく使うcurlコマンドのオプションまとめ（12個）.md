@@ -42,7 +42,7 @@ $ curl -X PUT http://www.example.com/
 $ curl -k http://www.example.com/
 
 # リダイレクトさせる（-L）
-$ curl -L http://www.google.com/
+$ curl -L http://www.example.com/
 
 ```
 #### 情報確認（デバッグ系）
@@ -53,7 +53,7 @@ $ curl -L http://www.google.com/
 $ curl -I http://www.example.com/
 
 # 詳細をログ出力（-vもしくは--verbose）
-$ curl -v http://www.google.com/
+$ curl -v http://www.example.com/
 ```
 
 

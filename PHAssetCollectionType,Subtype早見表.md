@@ -10,11 +10,19 @@ PHAssetCollectionType、PHAssetCollectionSubtypeの早見表をまとめます�
    1. PHAssetCollectionTypeに**PHAssetCollectionTypeSmartAlbum**を指定
    2. PHAssetCollectionSubtypeに**PHAssetCollectionSubtypeSmartAlbumUserLibrary**を指定
 
-```objc:カメラロールのコレクションを取得するサンプル(Objective-c)
+**カメラロールのコレクションを取得するサンプル**
+
+```objc:Objective-C
  PHFetchResult *result = [PHAssetCollection fetchAssetCollectionsWithType:PHAssetCollectionTypeSmartAlbum
                                                                    subtype:PHAssetCollectionSubtypeSmartAlbumUserLibrary
                                                                    options:nil];
 ```
+
+```swift:Swift
+let result = PHAssetCollection.fetchAssetCollections(with: .smartAlbum,
+                                                     subtype: .any,
+                                                     options: nil)
+````
 
 # PHAssetCollectionType
 

@@ -29,13 +29,18 @@ https://www.charlesproxy.com/
 
  - **iOS端末のネットワーク設定で、HTTPプロキシ設定をしているか**
 （PCのIPアドレスとCharlesで設定したポート番号を指定）
+**iOS側の設定箇所**（`設定` > `Wi-Fi` > 接続中のWifiのiアイコン　> `HTTPプロキシ`）
+**Charles側の設定箇所**（`Proxy` > `Proxy Settings...`）
+![image.png](https://qiita-image-store.s3.amazonaws.com/0/113553/fc6f5357-5020-4902-7477-cbd6a06367cb.png)
 
  - **iOS端末にCharlesのルート証明書をインストールしているか**
+※証明書をインストールする際はCharlesに接続している状態で行う必要があるようです。
  http://www.charlesproxy.com/getssl
+![chartssl.png](https://qiita-image-store.s3.amazonaws.com/0/113553/e1458c78-d350-63ab-b715-219c9d690a1a.png)
 
  - **Charlesの設定でEnable SSL Proxingにチェックを入れているか**
-（Proxy > SSL Proxings Settings）
+（`Proxy` > `SSL Proxings Settings`）
 
  - **Charlesの設定でSSLプロキシを有効にするホスト名を追加しているか**
-（Proxy > SSL Proxings Settings、addから*を指定）
+（`Proxy` > `SSL Proxings Settings`、`add`から*を指定）
 
