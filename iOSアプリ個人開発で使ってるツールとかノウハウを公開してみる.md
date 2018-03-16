@@ -8,44 +8,39 @@
 
 # 開発環境
 
-![IMG_2263.jpg](https://qiita-image-store.s3.amazonaws.com/0/113553/e9eaf519-4eb2-1814-f889-59f4b30d3451.jpeg)
-
 ## ハードウェア
- - 開発機（MacBook Pro Retina, 15-inch, Mid 2015）
- - 外部モニタ×1（三菱RDT235WLM-D）
+ - 開発機（MacBook Pro Retina）
  - キーボード（[Apple Wireless Keyboard MC184J/A](http://www.apple.com/jp/shop/product/MLA22J/A/magic-keyboard-jis)）
  - マウス([logicool M720 TRIATHLON](https://www.logicool.co.jp/ja-jp/product/m720-triathlon))
-
-
-```
-2017/3/25追記：
-※皆様ご指摘の通り、Swiftコンパイルに時間がかかるため、開発機を変更しました！
-```
 
 ## ソフトウェア
 Sketchは操作がわかりやすく、iOSのテンプレがあるので使い始めました。
 個人開発だからバージョン管理ソフトはいらないと思っていましたが、
 アプリの種類や、バージョンが増えてきてぐちゃぐちゃになってきたのでGitを導入しました。
 
- - macOS Sierra 10.12
- - Xcode 9
- - [Coda](https://panic.com/jp/coda/)（HTML/CSS/Pythonコーディング用）
- - [Sketch](https://www.sketchapp.com/)（アプリアイコン/UIパーツ作成用）
- - [Cocoapods](https://cocoapods.org/)（パッケージ管理）
- - [Carthage](https://github.com/Carthage/Carthage)（パッケージ管理）
- - [Git](https://git-scm.com/)（バージョン管理）
- - [Slack](https://slack.com/)（チャットでの通知）
- - [Evernote](https://evernote.com/intl/jp/)（アプリの企画メモ、開発手順の記録など）
- - [Fastlane](https://github.com/fastlane/fastlane)（AppStoreへの申請の自動化）
- - [Charles](https://www.charlesproxy.com/)(通信パケットキャプチャ)
- - [Deckset](https://www.decksetapp.com/)(資料作成)
+|名称|説明|用途|
+|:---|:---|:---|
+|[macOS Sierra 10.12](https://support.apple.com/ja-jp/HT208202)|OS|-|
+|[Xcode 9](https://developer.apple.com/xcode/)|統合開発環境|Swiftコーディング|
+|[Coda](https://panic.com/jp/coda/)|テキストエディタ|HTML、CSS,、Pythonコーディング|
+|[Atom](https://atom.io/)|テキストエディタ|コンフリクト解消等|
+|[Sketch](https://www.sketchapp.com/)|デザインツール|アプリアイコン、UIパーツ作成|
+|[Cocoapods](https://cocoapods.org/)|パッケージ管理|自作ライブラリの管理、OSS利用|
+|[Carthage](https://github.com/Carthage/Carthage)|パッケージ管理|OSS利用|
+|[Git](https://git-scm.com/)|バージョン管理システム|ソースコード/リソースファイル管理|
+|[Slack](https://slack.com/)|チャット|各種システムの通知|
+|[Evernote](https://evernote.com/intl/jp/)|クラウドノート|アプリの企画メモ、開発手順の記録|
+|[Fastlane](https://github.com/fastlane/fastlane)|CI/CDツール|AppStoreへの申請の自動化|
+|[Charles](https://www.charlesproxy.com/)|通信パケットキャプチャソフト|通信処理のデバッグ|
+|[Deckset](https://www.decksetapp.com/)|Markdownスライドエディタ|プレゼン資料の作成|
 
 # 開発言語
-Objective-C大好きだったのですが、Swiftはもっと好きになりました。
+開発当初はObjective-Cで書いていましたが、やはりSwiftの方がStruct/EnumなどSwiftyに書けるのが便利で、徐々にSwiftへ移行しています。
 
  - Swift / Objective-C（古い機能はObjective-Cで書いてあるので移行中）
  - HTML/CSS（アプリサポート用サイトのコーディング）
  - Python（画像のリサイズなどで自動化スクリプトをつくるとき）
+ - Ruby（fastlaneのアクション作成）
  - Bash（Info.plistの設定変更やxcodebuildの自動化バッチをつくるとき）
 
 # 利用しているWebサービス
@@ -73,9 +68,9 @@ Objective-C大好きだったのですが、Swiftはもっと好きになりま�
  - [Dribbble](https://dribbble.com/)（UIデザインの参考）
 
 ## ライブラリ管理
-似たようなアプリをいくつか作っているので、
-よく使うmethodやclassを部品化して、再利用しています。
+似たようなアプリをいくつか作っているので、よく使うmethodやclassを部品化して、再利用しています。最近BitbucketからGithubのプライベートリポジトリへ移行しました。
 
+ - [Github](https://github.com/)（プライベートリポジトリで自作ライブラリのバージョン管理、Todo管理）
  - [Bitbucket](https://bitbucket.org/)（プライベートリポジトリで自作ライブラリのバージョン管理、Todo管理）
  - [COCOAPODS SEARCH](http://cocoapods.wantedly.com/)（オープンソースライブラリの検索、ランキング）
  - [cocoa CONTROLS](https://www.cocoacontrols.com/)（オープンソースライブラリの検索）
@@ -100,6 +95,7 @@ AppStoreに載せるスクリーンショットの素材はここから良さげ
  - [写真素材 足成](http://www.ashinari.com/)
  - [re:splashed](http://www.resplashed.com/)
  - [LIFE OF PIX](http://www.lifeofpix.com/)
+ - [pexels](https://www.pexels.com/search/macbook%20pro/)
 
 # 書籍
 あまり初心者向け書籍で触れられない、設計やコーディングスタイル、UIKitの勉強に役立った本など。
@@ -110,6 +106,8 @@ AppStoreに載せるスクリーンショットの素材はここから良さげ
  - [詳解Swift 第3版](http://www.sbcr.jp/products/4797390537.html)
  - [本気ではじめるiPhoneアプリ作り（ヤフー黒帯シリーズ）](http://www.sbcr.jp/products/4797384512.html)
  - [よくわかるAuto Layout](http://www.ric.co.jp/book/contents/book_1032.html)
+ - [Swift 4 Protocol-Oriented Programming](https://www.amazon.co.jp/dp/B0751PRVB4/ref=dp-kindle-redirect?_encoding=UTF8&btkr=1)
+ - [Test-Driven iOS Development with Swift 4](https://www.packtpub.com/application-development/test-driven-ios-development-swift-4-third-edition)
 
 # 利用しているオープンソースライブラリ
 デファクトスタンダードになっているものをよく使ってます。
@@ -123,4 +121,11 @@ AppStoreに載せるスクリーンショットの素材はここから良さげ
  - [UCKDeviceInfo](https://cocoapods.org/pods/UCKDeviceInfo)（端末情報取得）
  - [SwiftLint](https://github.com/realm/SwiftLint)（Lintツール）
  - [SwiftyJSON](https://github.com/SwiftyJSON/SwiftyJSON)（JSONパーサー）
+ - [PureLayout](https://github.com/PureLayout/PureLayout)（AutoLayoutラッパー）
+ - [Device](https://github.com/Ekhoo/Device)（デバイス判定）
+ - [StringStylizer](https://github.com/kazuhiro4949/StringStylizer)（NSAttributedStringラッパー）
+ - [SwiftyUserDefaults](https://github.com/radex/SwiftyUserDefaults)（UserDefaultsラッパー）
+ - [Toast-Swift](https://github.com/scalessec/Toast-Swift)（トースト表示）
+ - [IBAnalyzer](https://github.com/fastred/IBAnalyzer)（storyboard、xibの静的解析）
+ - [ActionClosurable](https://github.com/takasek/ActionClosurable)（addTargetなどのアクションをクロージャで記述）
 

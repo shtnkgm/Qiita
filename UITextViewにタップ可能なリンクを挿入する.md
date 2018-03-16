@@ -23,11 +23,11 @@ class ViewController: UIViewController, UITextViewDelegate {
         
         let attributedString = NSMutableAttributedString(string: baseString)
         
-        attributedString.addAttribute(NSLinkAttributeName,
+        attributedString.addAttribute(.link,
                                       value: UIApplicationOpenSettingsURLString,
                                       range: NSString(string: baseString).range(of: "設定アプリへのリンク"))
         
-        attributedString.addAttribute(NSLinkAttributeName,
+        attributedString.addAttribute(.link,
                                       value: "https://www.google.co.jp/",
                                       range: NSString(string: baseString).range(of: "こちら"))
         
