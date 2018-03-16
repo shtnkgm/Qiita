@@ -27,8 +27,8 @@ for zuuid in $($SQLITE3 $DB_FILE "$SQL_SELECT_ID"); do
   SQL="$SQL_SELECT_BODY '$zuuid'"
   $SQLITE3 $DB_FILE "$SQL" > "$DIR/${TITLE}.md"
   echo "* $TITLE url: $URL";
-  MARKDOWN="$MARKDOWN* $TITLE ([GitHub](./$TITLE.md)|[Qiita]($URL \"see on Qiita\"))\n"
-  echo "* $TITLE ([GitHub](./$TITLE.md)|[Qiita]($URL \"see on Qiita\"))\n";
+  MARKDOWN="$MARKDOWN* $TITLE ([GitHub](./$TITLE.md)|[Qiita]($URL))\n"
+  echo "* $TITLE ([GitHub](./$TITLE.md)|[Qiita]($URL))\n";
 done
 
 #目次がわりのREADME.mdを作成
