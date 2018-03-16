@@ -32,7 +32,7 @@ for zuuid in $($SQLITE3 $DB_FILE "$SQL_SELECT_ID"); do
 done
 
 #目次がわりのREADME.mdを作成
-echo $MD > "README.md"
+echo $MARKDOWN > "README.md"
 
 #デバックモードを追加
 if [ -z "$DEBUG" ]; then
