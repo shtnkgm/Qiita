@@ -1,6 +1,7 @@
 Posts on Qiita
 =====
 
+* Swiftで非同期処理を同期処理にする ([GitHub](./Swiftで非同期処理を同期処理にする.md)|[Qiita](https://qiita.com/shtnkgm/items/d552bd3cf709266a9050))
 * iOSアプリ個人開発で使ってるツールとかノウハウを公開してみる ([GitHub](./iOSアプリ個人開発で使ってるツールとかノウハウを公開してみる.md)|[Qiita](https://qiita.com/shtnkgm/items/8d8d633be9e3ab1a504a))
 * SwiftLintがmallocエラーで終了する場合の対処方法 ([GitHub](./SwiftLintがmallocエラーで終了する場合の対処方法.md)|[Qiita](https://qiita.com/shtnkgm/items/b55ec64961a139624ec8))
 * Swiftで画像を保存する時の実行時エラー ([GitHub](./Swiftで画像を保存する時の実行時エラー.md)|[Qiita](https://qiita.com/shtnkgm/items/50cc3e78948ff44c7d88))

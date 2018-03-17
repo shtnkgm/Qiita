@@ -12,8 +12,8 @@ DIR=$PWD
 DB_FILE=$HOME/Library/Containers/com.qiita.Kobito/Data/Library/Kobito/Kobito.db
 SQLITE3=/usr/bin/sqlite3
 MSG='Automatic Update'
-SQL_SELECT_ID='select ZUUID  from ZITEM where ZUUID is not null and ZPRIVATE = 0 ORDER BY ZPOSTED_AT DESC;'
-SQL_SELECT_TITLE_AND_URL='select ZURL,ZTITLE  from ZITEM where ZUUID = '
+SQL_SELECT_ID='select ZUUID from ZITEM where ZUUID is not null and ZPRIVATE = 0 ORDER BY ZPOSTED_AT DESC;'
+SQL_SELECT_TITLE_AND_URL='select ZURL,ZTITLE from ZITEM where ZUUID = '
 SQL_SELECT_BODY='select ZRAW_BODY from ZITEM where ZUUID = '
 
 #1レコードずつファイルに保存
