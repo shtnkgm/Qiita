@@ -1,6 +1,9 @@
 Posts on Qiita
 =====
 
+* Swiftと3種類のポリモーフィズム ([GitHub](./Swiftと3種類のポリモーフィズム.md)|[Qiita](https://qiita.com/shtnkgm/items/fcc1a1a75895a31df4a9))
+* Xcode9.3アップデート時のlibxml2のエラーの対処法 ([GitHub](./Xcode9.3アップデート時のlibxml2のエラーの対処法.md)|[Qiita](https://qiita.com/shtnkgm/items/73ef00ecd07ae68b894b))
+* SwiftLintの運用ノウハウ ([GitHub](./SwiftLintの運用ノウハウ.md)|[Qiita](https://qiita.com/shtnkgm/items/6dd756aa14926736c6f5))
 * Swiftで非同期処理を同期処理にする ([GitHub](./Swiftで非同期処理を同期処理にする.md)|[Qiita](https://qiita.com/shtnkgm/items/d552bd3cf709266a9050))
 * iOSアプリ個人開発で使ってるツールとかノウハウを公開してみる ([GitHub](./iOSアプリ個人開発で使ってるツールとかノウハウを公開してみる.md)|[Qiita](https://qiita.com/shtnkgm/items/8d8d633be9e3ab1a504a))
 * SwiftLintがmallocエラーで終了する場合の対処方法 ([GitHub](./SwiftLintがmallocエラーで終了する場合の対処方法.md)|[Qiita](https://qiita.com/shtnkgm/items/b55ec64961a139624ec8))
