@@ -13,12 +13,12 @@ iOSのPhotos Frameworkで写真アルバムの情報を取得するサンプル�
 タイトルの取得はPHAssetCollectionクラスの**localizedTitle**プロパティから行います。
 
 ```objc:写真アルバムの情報を取得するサンプル(Objective-C)
-    PHFetchResult *assetCollections = [PHAssetCollection fetchAssetCollectionsWithType:PHAssetCollectionTypeSmartAlbum
-                                                                               subtype:PHAssetCollectionSubtypeAny
-                                                                               options:nil];
+    PHFetchResult *assetCollections = [PHAssetCollection fetchAssetCollectionsWithType: PHAssetCollectionTypeSmartAlbum
+                                                                               subtype: PHAssetCollectionSubtypeAny
+                                                                               options: nil];
     for (PHAssetCollection *assetCollection in assetCollections) {
-        PHFetchResult *assets = [PHAsset fetchAssetsInAssetCollection:assetCollection options:nil];
-        NSLog(@"%@:%d",assetCollection.localizedTitle,(int)assets.count);
+        PHFetchResult *assets = [PHAsset fetchAssetsInAssetCollection:assetCollection options: nil];
+        NSLog(@"%@:%d", assetCollection.localizedTitle, (int)assets.count);
     }
 ```
 
@@ -40,5 +40,5 @@ iOSのPhotos Frameworkで写真アルバムの情報を取得するサンプル�
 
 # 関連記事
 PHAssetCollectionType,Subtypeの種類は以下を参照。
-[PHAssetCollectionType,Subtype早見表](http://qiita.com/shtnkgm/items/5b14d41685226f5c5e4b)
+[PHAssetCollectionType早見表](http://qiita.com/shtnkgm/items/5b14d41685226f5c5e4b)
 

@@ -57,15 +57,18 @@ Sketchは操作がわかりやすく、iOSのテンプレがあるので使い�
 
 ## UIデザイン
 デザインも自分でやらないといけないので、素材を活用してます。
-最近はフラットデザインに合うアイコン素材を提供しているicons8を主に活用中。
+最近はフラットデザインに合うアイコン素材を提供している[icons8](https://icons8.com/)を主に活用中。
+配色は[Googleのマテリアルデザインガイドライン](https://material.io/guidelines/style/color.html)を参考にしています。
 
  - [icons8](https://icons8.com/)（ボタンUI等のアイコン画像）
+ - [material.io](https://material.io/guidelines/style/color.html)（Googleマテリアルデザインガイドライン）
  - [iconmonstr](http://iconmonstr.com/)（アイコン素材）
  - [ICOOON MONO](http://icooon-mono.com)（アイコン素材）
  - [Subtle Patterns](http://subtlepatterns.com/)（背景パターン素材）
  - [MakeAppIcon](https://makeappicon.com/)（アプリアイコンの複数サイズ切り出し）
  - [pttrns](http://pttrns.com/)（UIデザインの参考）
  - [Dribbble](https://dribbble.com/)（UIデザインの参考）
+ - [myfonts.com/WhatTheFont](http://www.myfonts.com/WhatTheFont/)（フォントを画像検索）
 
 ## ライブラリ管理
 似たようなアプリをいくつか作っているので、よく使うmethodやclassを部品化して、再利用しています。最近BitbucketからGithubのプライベートリポジトリへ移行しました。
@@ -80,7 +83,8 @@ Sketchは操作がわかりやすく、iOSのテンプレがあるので使い�
 サポートサイトもGithub Pagesで作成しているので無料です。
 
  - [Googleフォーム](https://docs.google.com)（問い合わせ受付、ユーザーからの不具合受付）
- - [Google Analytics](https://analytics.google.com)（アクセス解析）
+ - [Firebase Analytics](https://console.firebase.google.com/?hl=ja)（アクセス解析）
+ - [fabric / Crashlytics](http://try.crashlytics.com/)(クラッシュ解析)
  - [bit.ly](https://app.bitly.com)（URL短縮、アクセス解析）
  - [App Annie](https://www.appannie.com)（アプリ分析、収益確認）
  - [GitHub](https://github.com)（Github Pagesでサイト公開）
@@ -98,7 +102,7 @@ AppStoreに載せるスクリーンショットの素材はここから良さげ
  - [pexels](https://www.pexels.com/search/macbook%20pro/)
 
 # 書籍
-あまり初心者向け書籍で触れられない、設計やコーディングスタイル、UIKitの勉強に役立った本など。
+あまり初心者向け書籍で触れられない、設計やコーディングスタイル、UIKitの勉強に役立った本など。（※アフィリエイトリンクではありません）
 
  - [iOS開発におけるパターンによるオートマティズム](http://hmdt.jp/hmdtbooks/pg329.html)
  - [Effective Objective-C 2.0](http://www.shoeisha.co.jp/book/detail/9784798134192)
@@ -108,6 +112,7 @@ AppStoreに載せるスクリーンショットの素材はここから良さげ
  - [よくわかるAuto Layout](http://www.ric.co.jp/book/contents/book_1032.html)
  - [Swift 4 Protocol-Oriented Programming](https://www.amazon.co.jp/dp/B0751PRVB4/ref=dp-kindle-redirect?_encoding=UTF8&btkr=1)
  - [Test-Driven iOS Development with Swift 4](https://www.packtpub.com/application-development/test-driven-ios-development-swift-4-third-edition)
+ - [Reactive Programming with Swift 4](https://www.safaribooksonline.com/library/view/reactive-programming-with/9781787120211/?ar&orpq)
 
 # 利用しているオープンソースライブラリ
 デファクトスタンダードになっているものをよく使ってます。
@@ -128,4 +133,5 @@ AppStoreに載せるスクリーンショットの素材はここから良さげ
  - [Toast-Swift](https://github.com/scalessec/Toast-Swift)（トースト表示）
  - [IBAnalyzer](https://github.com/fastred/IBAnalyzer)（storyboard、xibの静的解析）
  - [ActionClosurable](https://github.com/takasek/ActionClosurable)（addTargetなどのアクションをクロージャで記述）
+ - [TouchVisualizer](https://github.com/morizotter/TouchVisualizer)（タップ位置の可視化）
 

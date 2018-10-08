@@ -33,6 +33,7 @@ class ViewController: UIViewController, UITextViewDelegate {
         
         textView.attributedText = attributedString
         textView.isSelectable = true
+        textView.delegate = self
     }
   
     override func didReceiveMemoryWarning() {

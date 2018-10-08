@@ -93,44 +93,52 @@ Resnet50.swift（一部抜粋）
 # カメラ画像をキャプチャする処理を実装
 
 ```swift:AVFoundationを利用し、カメラ画像をキャプチャ
-// カメラキャプチャの開始
-private func startCapture() {
-let captureSession = AVCaptureSession()
-captureSession.sessionPreset = AVCaptureSessionPresetPhoto
-
-// 入力の指定
-let captureDevice = AVCaptureDevice.defaultDevice(withMediaType: AVMediaTypeVideo)
-guard let input = try? AVCaptureDeviceInput(device: captureDevice) else { return }
-guard captureSession.canAddInput(input) else { return }
-captureSession.addInput(input)
-
-// 出力の指定
-let output: AVCaptureVideoDataOutput = AVCaptureVideoDataOutput()
-output.setSampleBufferDelegate(self, queue: DispatchQueue(label: "VideoQueue"))
-guard captureSession.canAddOutput(output) else { return }
-captureSession.addOutput(output)
-
-// プレビューの指定
-guard let previewLayer = AVCaptureVideoPreviewLayer(session: captureSession) else { return }
-previewLayer.videoGravity = AVLayerVideoGravityResizeAspectFill
-previewLayer.frame = view.bounds
-view.layer.insertSublayer(previewLayer, at: 0)
-
-// キャプチャ開始
-captureSession.startRunning()
-}
+    // カメラキャプチャの開始
+    private func startCapture() {
+        let captureSession = AVCaptureSession()
+        captureSession.sessionPreset = .photo
+        
+        // 入力の指定
+        guard let captureDevice = AVCaptureDevice.default(for: .video),
+            let input = try? AVCaptureDeviceInput(device: captureDevice),
+            captureSession.canAddInput(input) else {
+                assertionFailure("Error: 入力デバイスを追加できませんでした")
+                return
+        }
+        
+        captureSession.addInput(input)
+        
+        // 出力の指定
+        let output = AVCaptureVideoDataOutput()
+        output.setSampleBufferDelegate(self, queue: DispatchQueue(label: "VideoQueue"))
+        
+        guard captureSession.canAddOutput(output) else {
+            assertionFailure("Error: 出力デバイスを追加できませんでした")
+            return
+        }
+        captureSession.addOutput(output)
+        
+        // プレビューの指定
+        let previewLayer = AVCaptureVideoPreviewLayer(session: captureSession)
+        previewLayer.videoGravity = .resizeAspectFill
+        previewLayer.frame = view.bounds
+        view.layer.insertSublayer(previewLayer, at: 0)
+        
+        // キャプチャ開始
+        captureSession.startRunning()
+    }
 ```
 
 ```swift:撮影フレーム枚に呼び出されるデリゲートメソッド
-extension ViewController: AVCaptureVideoDataOutputSampleBufferDelegate {
-func captureOutput(_ output: AVCaptureOutput!, didOutputSampleBuffer sampleBuffer: CMSampleBuffer!, from connection: AVCaptureConnection!) {
+    func captureOutput(_ output: AVCaptureOutput, didOutput sampleBuffer: CMSampleBuffer, from connection: AVCaptureConnection) {
+        // CMSampleBufferをCVPixelBufferに変換
+        guard let pixelBuffer = CMSampleBufferGetImageBuffer(sampleBuffer) else {
+            assertionFailure("Error: バッファの変換に失敗しました")
+            return
+        }
 
-// CMSampleBufferをCVPixelBufferに変換
-guard let pixelBuffer = CMSampleBufferGetImageBuffer(sampleBuffer) else { return }
-
-// この中にVision.frameworkの処理を書いていく
-}
-}
+    // この中にVision.frameworkの処理を書いていく
+    }
 ```
 
 # Vision.frameworkで利用する主なクラス
@@ -181,50 +189,64 @@ guard let pixelBuffer = CMSampleBufferGetImageBuffer(sampleBuffer) else { return
 # 具体的な実装コード
 
 ```swift:モデルクラスの初期化
-// CoreMLのモデルクラスの初期化
-guard let model = try? VNCoreMLModel(for: Resnet50().model) else { return }
+        // CoreMLのモデルクラスの初期化
+        guard let model = try? VNCoreMLModel(for: Resnet50().model) else {
+            assertionFailure("Error: CoreMLモデルの初期化に失敗しました")
+            return
+        }
 ```
 
 ```swift:画像認識リクエストを作成
-// 画像認識リクエストを作成（引数はモデルとハンドラ）
-let request = VNCoreMLRequest(model: model) {
-[weak self] (request: VNRequest, error: Error?) in
-guard let results = request.results as? [VNClassificationObservation] else { return }
-
-// 判別結果とその確信度を上位3件まで表示
-// identifierはカンマ区切りで複数書かれていることがあるので、最初の単語のみ取得する
-let displayText = results.prefix(3)
-.flatMap { "\(Int($0.confidence * 100))% \($0.identifier.components(separatedBy: ", ")[0])" }
-.joined(separator: "\n")
-
-DispatchQueue.main.async {
-self?.textView.text = displayText
-}
-}
+        // 画像認識リクエストを作成（引数はモデルとハンドラ）
+        let request = VNCoreMLRequest(model: model) { [weak self] (request: VNRequest, error: Error?) in
+            guard let results = request.results as? [VNClassificationObservation] else { return }
+            
+            // 判別結果とその確信度を上位3件まで表示
+            // identifierは類義語がカンマ区切りで複数書かれていることがあるので、最初の単語のみ取得する
+            let displayText = results.prefix(3).compactMap { "\(Int($0.confidence * 100))% \($0.identifier.components(separatedBy: ", ")[0])" }.joined(separator: "\n")
+            
+            DispatchQueue.main.async {
+                self?.textView.text = displayText
+            }
+        }
 ```
 
 ```swift:画像認識リクエストを実行
-// CVPixelBufferに対し、画像認識リクエストを実行
-try? VNImageRequestHandler(cvPixelBuffer: pixelBuffer, options: [:]).perform([request])
+        // CVPixelBufferに対し、画像認識リクエストを実行
+        try? VNImageRequestHandler(cvPixelBuffer: pixelBuffer, options: [:]).perform([request])
 ```
 
 # 画像認識部分の完成形
 ```swift
-
-guard let pixelBuffer = CMSampleBufferGetImageBuffer(sampleBuffer) else { return }
-guard let model = try? VNCoreMLModel(for: Resnet50().model) else { return }
-
-let request = VNCoreMLRequest(model: model) {
-[weak self] (request: VNRequest, error: Error?) in
-guard let results = request.results as? [VNClassificationObservation] else { return }
-
-let displayText = results.prefix(3)
-.flatMap { "\(Int($0.confidence * 100))% \($0.identifier.components(separatedBy: ", ")[0])" }
-.joined(separator: "\n")
-
-DispatchQueue.main.async { self?.textView.text = displayText }
-}
-try? VNImageRequestHandler(cvPixelBuffer: pixelBuffer, options: [:]).perform([request])
+    func captureOutput(_ output: AVCaptureOutput, didOutput sampleBuffer: CMSampleBuffer, from connection: AVCaptureConnection) {
+        // CMSampleBufferをCVPixelBufferに変換
+        guard let pixelBuffer = CMSampleBufferGetImageBuffer(sampleBuffer) else {
+            assertionFailure("Error: バッファの変換に失敗しました")
+            return
+        }
+        
+        // CoreMLのモデルクラスの初期化
+        guard let model = try? VNCoreMLModel(for: Resnet50().model) else {
+            assertionFailure("Error: CoreMLモデルの初期化に失敗しました")
+            return
+        }
+        
+        // 画像認識リクエストを作成（引数はモデルとハンドラ）
+        let request = VNCoreMLRequest(model: model) { [weak self] (request: VNRequest, error: Error?) in
+            guard let results = request.results as? [VNClassificationObservation] else { return }
+            
+            // 判別結果とその確信度を上位3件まで表示
+            // identifierは類義語がカンマ区切りで複数書かれていることがあるので、最初の単語のみ取得する
+            let displayText = results.prefix(3).compactMap { "\(Int($0.confidence * 100))% \($0.identifier.components(separatedBy: ", ")[0])" }.joined(separator: "\n")
+            
+            DispatchQueue.main.async {
+                self?.textView.text = displayText
+            }
+        }
+        
+        // CVPixelBufferに対し、画像認識リクエストを実行
+        try? VNImageRequestHandler(cvPixelBuffer: pixelBuffer, options: [:]).perform([request])
+    }
 ```
 
 # サンプルコード
@@ -237,7 +259,7 @@ https://github.com/shtnkgm/VisionFrameworkSample
 - [【WWDC2017】Vision.framework のテキスト検出を試してみました【iOS11】](https://tech.recruit-mp.co.jp/mobile/ios-11-vision-framework/)
 - [Keras + iOS11 CoreML + Vision Framework による、ももクロ顔識別アプリの開発](http://qiita.com/kenmaz/items/d416b191f79f60e07752)
 - [[Core ML] .mlmodel ファイルを作成する / フェンリル](https://blog.fenrir-inc.com/jp/2017/06/create-core-ml.html)
-- [[iOS 11] CoreMLで画像の識別を試してみました（Vision.Frameworkを使わないパターン） #WWDC2017](http://dev.classmethod.jp/smartphone/ios-11-code-ml/)
+- [[iOS 11] CoreMLで画像の識別を試してみました（Vision.Frameworkを使わないパターン） #WWDC2017](http://dev.classmethod.jp/smartphone/ios-11-code-ml/)
 - [Places205-GoogLeNetで場所の判定 / fabo.io](http://docs.fabo.io/swift/coreml/001_coreml.html)
 - [iOSDCのリジェクトコンで『iOSとディープラーニング』について話しましたAdd Star](http://d.hatena.ne.jp/shu223/20160902/1472771340)
 - [[iOS 10][ニューラルネットワーク] OSSでAccelerateに追加されたBNNSを理解する ~XOR編~](http://dev.classmethod.jp/smartphone/ios-10-bnns-xor/)

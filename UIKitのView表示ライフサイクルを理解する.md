@@ -153,7 +153,7 @@ Viewの表示ライフサイクルにおける、各メソッドの説明を順�
 
 #### viewWillLayoutSubviews()
  - ビューのレイアウトを開始する直前に呼ばれる （初期表示時や画面回転時など）
- - ビューのlayoutSubview()が実行される
+ - ビューのlayoutSubviews()が実行される
 
 #### viewDidLayoutSubviews()
  - ビューのレイアウトが完了した際に呼ばれる （複数回呼ばれるので、オブジェクトの初期化などには向かない）

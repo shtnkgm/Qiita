@@ -44,4 +44,10 @@ var computedProperty: Int {
 `Attempting to access 'computedProperty' within its own getter`
 ![image.png](https://qiita-image-store.s3.amazonaws.com/0/113553/843190c8-25f5-6a8e-6032-3318e626a151.png)
 
+また、コンソールのログに以下のwarningがでることもあるため、このwarningからも無限ループとなっていることを判断できます。
+
+```bash
+warning: could not execute support code to read Objective-C class data in the process. This may reduce the quality of type information available.
+```
+
 

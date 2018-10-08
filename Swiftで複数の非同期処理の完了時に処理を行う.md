@@ -1,0 +1,154 @@
+# Swiftで複数の非同期処理の完了時に処理を行う
+# 概要
+複数の非同期処理の完了後に、待ち合わせて何かしたい場合のTipsです。
+
+```sh:イメージ
+非同期処理1: ----->完了
+
+非同期処理2: ----------->完了★全ての処理が終わったココで何かしたい！
+
+非同期処理3: -->完了
+```
+
+**利用例**
+
+ - ある画面で**複数のAPIの非同期通信処理**が必要で、全てのAPIレスポンスを取得した後に画面を更新したい<br>（複数種類のAPIのレスポンスデータを取得後、UITableViewをreloadData()を1回だけ呼ぶ等）
+ - SDKでデータの取得処理が非同期になっており、for文で**全ての複数データを取得**してからデータ整形したい<br>（Photos frameworkのrequestImageメソッド等）
+
+# 実装例（並列）
+ - 各非同期処理の開始時に**start**、完了時に**end**を出力するプログラムです。
+ - GCD（Grand Central Dispatch）の**DispatchGroup**を作成し、非同期処理の実行前に`enter()`、実行後に`leave()`を呼ぶことで、複数の非同期処理の開始と完了を管理します。
+ - 全ての処理で完了の合図として`leave()`が呼ばれた後に、`notify()`メソッドで指定したクロージャが実行されます。
+
+``` swift:実装例（並列）
+func doMultiAsyncProcess() {
+    let dispatchGroup = DispatchGroup()    
+    let dispatchQueue = DispatchQueue(label: "queue", attributes: .concurrent)
+    
+    // 5つの非同期処理を実行
+    for i in 1...5 {
+        dispatchGroup.enter()
+        dispatchQueue.async(group: dispatchGroup) {
+            [weak self] in
+            self?.asyncProcess(number: i) {
+                (number: Int) -> Void in
+                print("#\(number) End")
+                dispatchGroup.leave()
+            }
+        }
+    }
+    
+    // 全ての非同期処理完了後にメインスレッドで処理
+    dispatchGroup.notify(queue: .main) {
+        print("All Process Done!")
+    }
+}
+
+// 非同期処理
+func asyncProcess(number: Int, completion: (_ number: Int) -> Void) {
+    print("#\(number) Start")
+    sleep((arc4random() % 100 + 1) / 100)
+    completion(number)
+}
+```
+
+# 実行結果（並列）
+各タスクが別のタスクを待たずに並列かつ非同期で実行され、最後に`print("All Process Done!")`が実行されます。
+
+```:実行結果（並列）
+#1 Start
+#3 Start
+#4 Start
+#2 Start
+#5 Start
+#3 End
+#1 End
+#4 End
+#2 End
+#5 End
+All Process Done!
+```
+
+# 直列実行、並列実行
+GCDのキューは大きく分けて直列と並列の2種類があります。
+
+```sh:イメージ
+# 並列
+非同期処理1: ---->
+非同期処理2: -------->★全て完了
+非同期処理3: -->
+
+# 直列
+非同期処理1: ---->
+非同期処理2:      -------->
+非同期処理3:               -->★全て完了
+
+```
+ - 直列キュー（シリアルキュー）の実行スレッドは1つで、同時に実行できるタスクは1つです。
+ - 並列キュー（コンカレントキュー）の実行スレッドは複数で、同時に実行できるタスクは複数です。
+
+直列にタスクを実行するキューを作成するには、attributeの`.concurrent`の指定を外します。
+
+```swift:直列、並列キューの指定方法
+// 並列キュー / attribute指定あり(.concurrent）
+let dispatchQueue = DispatchQueue(label: "queue", attributes: .concurrent)
+
+// 直列キュー / attibutes指定なし
+let dispatchQueue = DispatchQueue(label: "queue")
+```
+独自にキューを作成するのでなく、システムで用意されている**グローバルキューを利用する場合は.concurrentを指定しなくても並列キューとなる**ため、注意が必要です。
+
+```swift:グローバルキュー
+// 並列キュー（処理の優先度はdefault）
+let dispatchQueue = DispatchQueue.global(qos: .default)
+```
+
+# 実装例（直列）
+
+```swift:実装例（直列）
+func doMultiAsyncProcess() {
+    let dispatchGroup = DispatchGroup()
+    // 直列キュー / attibutes指定なし
+    let dispatchQueue = DispatchQueue(label: "queue")
+
+    // 5つの非同期処理を実行    
+    for i in 1...5 {
+        dispatchGroup.enter()
+        dispatchQueue.async(group: dispatchGroup) {
+            [weak self] in
+            self?.asyncProcess(number: i) {
+                (number: Int) -> Void in
+                print("#\(number) End")
+                dispatchGroup.leave()
+            }
+        }
+    }
+    
+    // 全ての非同期処理完了後にメインスレッドで処理
+    dispatchGroup.notify(queue: .main) {
+        print("All Process Done!")
+    }
+}
+```
+
+# 実行結果（直列）
+全てのタスクが逐次的（直列）に実行されているのが分かります。
+
+```:実行結果（直列）
+#1 Start
+#1 End
+#2 Start
+#2 End
+#3 Start
+#3 End
+#4 Start
+#4 End
+#5 Start
+#5 End
+All Process Done!
+```
+
+# github
+サンプルで作成したxcodeプロジェクトはこちらです。
+https://github.com/shtnkgm/MultiAsyncProcessingSample
+
