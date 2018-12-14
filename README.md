@@ -1,6 +1,9 @@
 Posts on Qiita
 =====
 
+* CaseIterableにindexプロパティを追加する ([GitHub](./CaseIterableにindexプロパティを追加する.md)|[Qiita](https://qiita.com/shtnkgm/items/7bc7f5e0b33c87880851))
+* 【iOS】オープンソースSwiftライブラリのつくり方 ([GitHub](./【iOS】オープンソースSwiftライブラリのつくり方.md)|[Qiita](https://qiita.com/shtnkgm/items/0f62398c66af159401a6))
+* SwiftGenでNamespace配下のすべての画像を取得する ([GitHub](./SwiftGenでNamespace配下のすべての画像を取得する.md)|[Qiita](https://qiita.com/shtnkgm/items/7eac57f632edee2bf3a6))
 * iOS11のVision.frameworkを使ってみる ([GitHub](./iOS11のVision.frameworkを使ってみる.md)|[Qiita](https://qiita.com/shtnkgm/items/43e97595392168e6ada8))
 * iOSアプリ開発用の.gitignoreの管理方法 ([GitHub](./iOSアプリ開発用の.gitignoreの管理方法.md)|[Qiita](https://qiita.com/shtnkgm/items/86fdd1d8ccfcfb3ac0c9))
 * iOSアプリ個人開発で使ってるツールとかノウハウを公開してみる ([GitHub](./iOSアプリ個人開発で使ってるツールとかノウハウを公開してみる.md)|[Qiita](https://qiita.com/shtnkgm/items/8d8d633be9e3ab1a504a))
